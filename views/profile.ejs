@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Профиль</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Профиль пользователя</h2>
+    
+    <% if (user.profilePicture) { %>
+      <img src="/uploads/<%= user.profilePicture %>" alt="Аватар" class="profile-img">
+    <% } %>
+    
+    <p><strong>Имя:</strong> <%= user.firstName || 'не указано' %></p>
+    <p><strong>Фамилия:</strong> <%= user.lastName || 'не указано' %></p>
+    <p><strong>Email:</strong> <%= user.email %></p>
+    <p><strong>Роль:</strong> 
+      <% if (user.role === 1) { %> Обычный пользователь
+      <% } else if (user.role === 2) { %> Модератор
+      <% } else if (user.role === 3) { %> Администратор
+      <% } else if (user.role === 4) { %> Супер-админ
+      <% } %>
+    </p>
+
+    <div class="role-section">
+      <%- roleContent %>
+    </div>
+
+    <hr>
+    <a href="/profile/edit">Редактировать профиль</a> |
+    <a href="/logout">Выйти</a>
+  </div>
+</body>
+</html>

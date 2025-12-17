@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Редактирование профиля</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <h2>Редактировать профиль</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    <div>
+      <label>Имя:</label>
+      <input type="text" name="firstName" value="<%= user.firstName || '' %>">
+    </div>
+    <div>
+      <label>Фамилия:</label>
+      <input type="text" name="lastName" value="<%= user.lastName || '' %>">
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email" value="<%= user.email %>" required>
+    </div>
+    <div>
+      <label>Аватар:</label>
+      <% if (user.profilePicture) { %>
+        <br><img src="/uploads/<%= user.profilePicture %>" style="width:80px; height:80px; object-fit:cover;">
+      <% } %>
+      <br><input type="file" name="profilePicture" accept="image/*">
+    </div>
+    <br>
+    <button type="submit">Сохранить</button>
+  </form>
+
+  <br><a href="/profile">← Назад к профилю</a>
+</body>
+</html>
